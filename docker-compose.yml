@@ -30,7 +30,7 @@ services:
       - 443:443
     volumes:
       - nginx_secrets:/etc/letsencrypt
-      - ./user_conf.d:/etc/nginx/user_conf.d
+      - ./conf.d/redirector.conf:/etc/nginx/conf.d/redirector.conf
     depends_on:
       - web
 
