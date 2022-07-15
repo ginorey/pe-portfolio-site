@@ -1,0 +1,42 @@
+# specify docker file version
+version: "3"
+# define list of services 
+services:
+  # define myportfolio service
+  myportfolio:
+    container_name: myportfolio
+    # define service will b e built with dockerfile in current directory
+    build: .
+    # restart on reboot or error
+    restart: always
+    # define file containing enviornment variables
+    env_file:
+      - .env
+    # define variable to our local dev enviornment
+    environment:
+      - FLASK_ENV=development
+    # define port used to host machine
+    ports:
+      - "5000:5000"
+    # map files into the container (development only)
+    volumes:
+      - .:/myportfolio
+    # specify container should start after mysql service is up
+    depends_on:
+      - mysql
+  
+  # define mysql service
+  mysql:
+    container_name: mysql
+    # lower resource usage than mysql
+    image: mariadb
+    # restart on error or reboot
+    restart: always
+    # define file containing enviornemnt variables
+    env_file:
+      - .env
+    volumes:
+      - mydatabase:/var/lib/mysql
+# define a volume that will persist if containers are recreated
+volumes:
+  mydatabase:
