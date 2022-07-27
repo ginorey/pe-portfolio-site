@@ -36,7 +36,7 @@ services:
     restart: always
     # generates certificates
     environment:
-      - CERTBOT_EMAIL=name@example.com
+      - CERTBOT_EMAIL=gino.rey@outlook.com
     # bind ports to the internet
     ports:
       - 80:80
