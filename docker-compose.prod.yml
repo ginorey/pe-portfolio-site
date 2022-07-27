@@ -3,8 +3,8 @@ version: "3"
 # define list of services 
 services:
   # define myportfolio service
-  myportfolio:
-    container_name: myportfolio
+  pe-portfolio-site:
+    container_name: pe-portfolio-site
     # define service will b e built with dockerfile in current directory
     build: .
     # restart on reboot or error
@@ -47,7 +47,7 @@ services:
       # map config files into the container
       - ./user_conf.d:/etc/nginx/user_conf.d
     depends_on:
-      - myportfolio
+      - pe-portfolio-site
 # define a volume that will persist if containers are recreated
 volumes:
   mydatabase:

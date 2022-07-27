@@ -4,7 +4,7 @@ version: "3"
 services:
   # define myportfolio service
   myportfolio:
-    container_name: myportfolio
+    container_name: pe-portfolio-site
     # define service will b e built with dockerfile in current directory
     build: .
     # restart on reboot or error
@@ -20,7 +20,7 @@ services:
       - "5000:5000"
     # map files into the container (development only)
     volumes:
-      - .:/myportfolio
+      - .:/pe-portfolio-site
     # specify container should start after mysql service is up
     depends_on:
       - mysql
