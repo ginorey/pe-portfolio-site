@@ -2,7 +2,7 @@
 
 import unittest
 import os
-from itsdangerous import json
+import json
 
 os.environ['TESTING'] = 'true'
 
