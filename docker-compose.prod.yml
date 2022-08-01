@@ -12,8 +12,6 @@ services:
     # define file containing enviornment variables
     env_file:
       - .env
-    ports:
-      - 7070:7070
     # specify container should start after mysql service is up
     depends_on:
       - mysql
