@@ -4,6 +4,7 @@ from flask import Flask, render_template, request
 from dotenv import load_dotenv
 from peewee import *
 from playhouse.shortcuts import model_to_dict
+from tests import *
 import re
 
 load_dotenv()
