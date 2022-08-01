@@ -2,9 +2,8 @@
 
 import unittest
 import os
-from app import app
-
 from itsdangerous import json
+
 os.environ['TESTING'] = 'true'
 
 from app import app
