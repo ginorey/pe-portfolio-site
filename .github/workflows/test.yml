@@ -1,0 +1,38 @@
+# Github Action Workflow
+name: Run Tests
+
+# Trigger workflow on push/pull request to the main branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Workflows
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # Run tests
+    name: Run Tests
+    env:
+      TESTING: true
+    steps:
+      # check repo
+      - name: Checkout Repositroy
+        uses: actions/checkout@v2
+      # install python
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.6.8'
+      # set up virtualenv
+      - name: Setup Python Virtual Environment
+        run: python -m venv python3-virtualenv
+      # install dependencies
+      - name: Install Dependencies
+        run: python3-virtualenv/bin/pip install -r requirements.txt
+      # run the tests
+      - name: Run Tests
+        run: ./run_test.sh
