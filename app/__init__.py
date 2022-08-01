@@ -11,15 +11,15 @@ app = Flask(__name__)
 
 if os.getenv("TESTING") == "true":
     print("Running in test mode")
-    mysql = SqliteDatabase('file:memory?mode=memory&cache=shared',uri=True)
+    mydb = SqliteDatabase('file:memory?mode=memory&cache=shared',uri=True)
 else:
-    mysql = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
+    mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
         user=os.getenv("MYSQL_USER"),
         password=os.getenv("MYSQL_PASSWORD"),
         host=os.getenv("MYSQL_HOST"),
-        port=3306
+        port=3316
     )
-print(mysql)
+print(mydb)
 
 class TimelinePost(Model):
     name = CharField()
@@ -28,10 +28,10 @@ class TimelinePost(Model):
     created_at = DateTimeField(default=datetime.datetime.now)
 
     class Meta:
-        database = mysql
+        database = mydb
 
-mysql.connect()
-mysql.create_tables([TimelinePost])
+mydb.connect()
+mydb.create_tables([TimelinePost])
 
 regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
